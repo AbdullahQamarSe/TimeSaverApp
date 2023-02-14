@@ -46,7 +46,7 @@ def run_code():
                                 import time
                                 from selenium.webdriver.firefox.options import Options
                                 options = Options()
-                                options.add_argument('--headless')
+                                #options.add_argument('--headless')
                                 driver = webdriver.Firefox(options=options)
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
                                 import time
@@ -214,7 +214,7 @@ def run_code():
                                 Next_button = driver.find_elements(By.XPATH, '//*[@id="btnSiguiente"]')
                                 Next_button[0].click()
                                 print("Appointment")
-                                ap1 = driver.find_elements(by=By.XPATH, value='//*[@id="cita2"]')
+                                ap1 = driver.find_elements(by=By.XPATH, value='//*[@id="cita1"]')
                                 if ap1:
                                         ap1[0].click()
                                 import requests
@@ -438,7 +438,7 @@ def run_code():
                         except Exception as e:
                                 print("Block By Website", e)
 
-schedule.every(5).minutes.do(run_code)
+schedule.every(5).seconds.do(run_code)
 while True:
     schedule.run_pending()
 

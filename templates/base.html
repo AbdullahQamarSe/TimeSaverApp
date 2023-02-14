@@ -1,0 +1,1882 @@
+
+{% load static %}
+<!DOCTYPE html>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Form submitted successfully</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Thank you for submitting the form. Further details will be shared through email.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <title>Appointment</title>
+  </head>
+
+  <body class="container bg-light">
+    <!-- Start Header form -->
+    <div class="text-center pt-5">
+      <img
+        src="https://i.ibb.co/8cDgdFX/Logo.png"
+        alt="network-logo"
+        width="72"
+        height="72"
+      />
+      <h2>Appointment Bot Form</h2>
+    </div>
+    <!-- End Header form -->
+
+    <!-- Start Card -->
+    <div class="card">
+      <!-- Start Card Body -->
+      <div class="card-body">
+        <!-- Start Form -->
+        <form id="bookingForm" action="{% url 'base' %}" method="post">
+          {% csrf_token %}
+          <!-- Start Input Name -->
+          <div class="form-group">
+            <label for="inputName"><b>Available Provinces</b></label>
+            <select
+              data-drupal-selector="edit-provincias-disponibles"
+              id="priovince"
+              onchange="updateProcedure(this)"
+              class="form-select required form-control"
+              id="province"
+              name="province"
+              required="required"
+              aria-required="true"
+            >
+              <option value="" selected="selected">- Select -</option>
+              <option value="A Coruña">A Coruña</option>
+              <option value="Albacete">Albacete</option>
+              <option value="Alicante">Alicante</option>
+              <option value="Almería">Almería</option>
+              <option value="Araba">Araba</option>
+              <option value="Asturias">Asturias</option>
+              <option value="Ávila">Ávila</option>
+              <option value="Badajoz">Badajoz</option>
+              <option value="Barcelona">Barcelona</option>
+              <option value="Bizkaia">Bizkaia</option>
+              <option value="Burgos">Burgos</option>
+              <option value="Cáceres">Cáceres</option>
+              <option value="Cádiz">Cádiz</option>
+              <option value="Cantabria">Cantabria</option>
+              <option value="Castellón">Castellón</option>
+              <option value="Ceuta">Ceuta</option>
+              <option value="Ciudad Real">Ciudad Real</option>
+              <option value="Córdoba">Córdoba</option>
+              <option value="Cuenca">Cuenca</option>
+              <option value="Gipuzkoa">Gipuzkoa</option>
+              <option value="Girona">Girona</option>
+              <option value="Granada">Granada</option>
+              <option value="Guadalajara">Guadalajara</option>
+              <option value="Huelva">Huelva</option>
+              <option value="Huesca">Huesca</option>
+              <option value="Illes Balears">Illes Balears</option>
+              <option value="Jaén">Jaén</option>
+              <option value="La Rioja">La Rioja</option>
+              <option value="Las Palmas">Las Palmas</option>
+              <option value="León">León</option>
+              <option value="Lleida">Lleida</option>
+              <option value="Lugo">Lugo</option>
+              <option value="Madrid">Madrid</option>
+              <option value="Málaga">Málaga</option>
+              <option value="Melilla">Melilla</option>
+              <option value="Murcia">Murcia</option>
+              <option value="Navarra">Navarra</option>
+              <option value="Orense">Orense</option>
+              <option value="Palencia">Palencia</option>
+              <option value="Pontevedra">Pontevedra</option>
+              <option value="Salamanca">Salamanca</option>
+              <option value="S.Cruz Tenerife">
+                S.Cruz Tenerife
+              </option>
+              <option value="Segovia">Segovia</option>
+              <option value="Sevilla">Sevilla</option>
+              <option value="Soria">Soria</option>
+              <option value="Tarragona">Tarragona</option>
+              <option value="Teruel">Teruel</option>
+              <option value="Toledo">Toledo</option>
+              <option value="Valencia">Valencia</option>
+              <option value="Valladolid">Valladolid</option>
+              <option value="Zamora">Zamora</option>
+              <option value="Zaragoza">Zaragoza</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail"
+              ><b
+                >Procedures National Police Corps and Foreign Office
+                Procedures</b
+              ></label
+            >
+            <select
+              data-drupal-selector="edit-tramites-cuerpo-nacional-de-policia-y-tramites-oficinas-de-extra"
+              class="form-select required form-control"
+              id="procedure"
+              name="procedure"
+              required="required"
+              aria-required="true"
+              onchange="updateDateOfBirth(this)"
+            >
+              <option value="" selected="selected">- Select -</option>
+            </select>
+          </div>
+
+          <!-- Start Input Telephone -->
+          <div class="form-group">
+            <h5>Document Type</h5>
+            <hr />
+
+            <input
+              type="radio"
+              id="nie_radio"
+              name="example"
+              value="hide"
+              checked
+            />
+            <label for="NIE">N.I.E</label>
+
+            <input type="radio" id="dni_radio" name="example" value="hide" />
+            <label for="DNI">D.N.I</label>
+            <input type="radio" id="pass_radio" name="example" value="hide" />
+            <label for="Passport">Passport</label>
+          </div>
+          <div class="form-row">
+            <!-- Start Input Date -->
+            <div class="form-group col-md-4" id="nie">
+              <label style="display: inline-block; text-align: right"
+                >N.I.E</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="nie"
+                name="nie"
+              />
+            </div>
+            <!-- these are hidden by default and will be shown when the user selects the radio button -->
+
+            <div class="form-group col-md-4" id="dni" style="display: none">
+              <label style="display: inline-block; text-align: right"
+                >D.N.I</label
+              >
+              <input type="text" class="form-control" id="dni" name="dni" />
+            </div>
+            <div
+              class="form-group col-md-4"
+              id="passport"
+              style="display: none"
+            >
+              <label style="display: inline-block; text-align: right"
+                >Passport</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="passport"
+                name="passport"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Start Input Date -->
+            <div class="form-group col-md-4">
+              <label style="display: inline-block; text-align: right"
+                >Name and Surname</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+            </div>
+
+            <div
+              class="form-group col-md-4"
+              id="birth_year"
+              style="display: none"
+            >
+              <label style="display: inline-block; text-align: right"
+                >Birth Year</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="birth_year"
+                name="birth_year"
+              />
+            </div>
+            <div
+              class="form-group col-md-4"
+              id="country_of_birth"
+              style="display: none"
+            >
+              <label for="inputName">Country of Nationality</label>
+              <select
+                id="country_of_birth"
+                name="country_of_birth"
+                class="form-control"
+                class="form-control"
+              >
+              <option value="" disabled selected>Select your country</option>
+              <option value="AFGANISTAN">AFGANISTAN</option>
+              <option value="ALBANIA">ALBANIA</option>
+              <option value="ALEMANIA">ALEMANIA</option>
+              <option value="ANDORRA">ANDORRA</option>
+              <option value="ANGOLA">ANGOLA</option>
+              <option value="ANGUILLA">ANGUILLA</option>
+              <option value="ANTIGUA Y BARBUDA">ANTIGUA Y BARBUDA</option>
+              <option value="ANTILLAS NL.">ANTILLAS NL.</option>
+              <option value="APATRIDA">APATRIDA</option>
+              <option value="ARABIA">ARABIA SAUDI</option>
+              <option value="ARGELIA">ARGELIA</option>
+              <option value="ARGENTINA">ARGENTINA</option>
+              <option value="ARMENIA">ARMENIA</option>
+              <option value="ARUBA">ARUBA</option>
+              <option value="AUSTRALIA">AUSTRALIA</option>
+              <option value="AUSTRIA">AUSTRIA</option>
+              <option value="AZERBAYAN">AZERBAYAN</option>
+              <option value="BAHAMAS">BAHAMAS</option>
+              <option value="BAHREIN">BAHREIN</option>
+              <option value="BANGLADESH">BANGLADESH</option>
+              <option value="BARBADOS">BARBADOS</option>
+              <option value="BELGICA">BELGICA</option>
+              <option value="BELICE">BELICE</option>
+              <option value="BENIN">BENIN</option>
+              <option value="BHUTAN">BHUTAN</option>
+              <option value="BIELORRUSIA O BELARUS">BIELORRUSIA O BELARUS</option>
+              <option value="BOLIVIA">BOLIVIA</option>
+              <option value="BOSNIA-HERZEGOVINA">BOSNIA-HERZEGOVINA</option>
+              <option value="BOTSWANA">BOTSWANA</option>
+              <option value="BRASIL">BRASIL</option>
+              <option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+              <option value="BULGARIA">BULGARIA</option>
+              <option value="BURKINA FASO">BURKINA FASO</option>
+              <option value="BURUNDI">BURUNDI</option>
+              <option value="CABO VERDE">CABO VERDE</option>
+              <option value="CAMBOYA">CAMBOYA</option>
+              <option value="CAMERUN">CAMERUN</option>
+              <option value="CANADA">CANADA</option>
+              <option value="CENTROAFRICA REPUBLICA">CENTROAFRICA REPUBLICA</option>
+              <option value="CHAD">CHAD</option>
+              <option value="CHILE">CHILE</option>
+              <option value="CHINA">CHINA</option>
+              <option value="CHIPRE">CHIPRE</option>
+              <option value="COLOMBIA">COLOMBIA</option>
+              <option value="COMORES">COMORES</option>
+              <option value="CONGO BRAZZAVILLE">CONGO BRAZZAVILLE</option>
+              <option value="COREA, REP. POP. DEMOC.">COREA, REP. POP. DEMOC.</option>
+              <option value="COREA, REPUBLICA">COREA, REPUBLICA</option>
+              <option value="COSTA DE MARFIL">COSTA DE MARFIL</option>
+              <option value="COSTA RICA">COSTA RICA</option>
+              <option value="CROACIA">CROACIA</option>
+              <option value="CUBA">CUBA</option>
+              <option value="DINAMARCA">DINAMARCA</option>
+              <option value="DJIBOUTI">DJIBOUTI</option>
+              <option value="DOMINICA">DOMINICA</option>
+              <option value="DOMINICANA REPUBLICA">DOMINICANA REPUBLICA</option>
+              <option value="ECUADOR">ECUADOR</option>
+              <option value="EEUU">EEUU</option>
+              <option value="EGIPTO">EGIPTO</option>
+              <option value="EL SALVADOR">EL SALVADOR</option>
+              <option value="EL VATICANO">EL VATICANO</option>
+              <option value="EMIRATOS ARABES UNIDOS">EMIRATOS ARABES UNIDOS</option>
+              <option value="ERITREA">ERITREA</option>
+              <option value="ESLOVAQUIA">ESLOVAQUIA</option>
+              <option value="ESLOVENIA">ESLOVENIA</option>
+              <option value="ESPAÑA">ESPAÑA</option>
+              <option value="ESTONIA">ESTONIA</option>
+              <option value="ETIOPIA">ETIOPIA</option>
+              <option value="FIDJI">FIDJI</option>
+              <option value="FILIPINAS">FILIPINAS</option>
+              <option value="FINLANDIA">FINLANDIA</option>
+              <option value="FRANCIA">FRANCIA</option>
+              <option value="GABON">GABON</option>
+              <option value="GAMBIA">GAMBIA</option>
+              <option value="GEORGIA">GEORGIA</option>
+              <option value="GHANA">GHANA</option>
+              <option value="GRANADA REPUBLICA">GRANADA REPUBLICA</option>
+              <option value="GRECIA">GRECIA</option>
+              <option value="GUATEMALA">GUATEMALA</option>
+              <option value="GUAYANA">GUAYANA</option>
+              <option value="GUINEA">GUINEA ECUATORIAL</option>
+              <option value="GUINEA REPUBLICA">GUINEA REPUBLICA</option>
+              <option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+              <option value="HAITI">HAITI</option>
+              <option value="HOLANDA">HOLANDA</option>
+              <option value="HONDURAS">HONDURAS</option>
+              <option value="HUNGRIA">HUNGRIA</option>
+              <option value="INDIA">INDIA</option>
+              <option value="INDONESIA">INDONESIA</option>
+              <option value="IRAK">IRAK</option>
+              <option value="IRAN">IRAN</option>
+              <option value="IRLANDA">IRLANDA</option>
+              <option value="ISLANDIA">ISLANDIA</option>
+              <option value="ISLAS MARSCHALL">ISLAS MARSCHALL</option>
+              <option value="ISRAEL">ISRAEL</option>
+              <option value="ITALIA">ITALIA</option>
+              <option value="JAMAICA">JAMAICA</option>
+              <option value="JAPON">JAPON</option>
+              <option value="JORDANIA">JORDANIA</option>
+              <option value="KAZAJSTAN">KAZAJSTAN</option>
+              <option value="KENIA">KENIA</option>
+              <option value="KIRGUISTAN">KIRGUISTAN</option>
+              <option value="KIRIBATI">KIRIBATI</option>
+              <option value="KUWAIT">KUWAIT</option>
+              <option value="LAOS">LAOS</option>
+              <option value="LAS MALDIVAS">LAS MALDIVAS</option>
+              <option value="LESOTHO">LESOTHO</option>
+              <option value="LETONIA">LETONIA</option>
+              <option value="LIBANO">LIBANO</option>
+              <option value="LIBERIA">LIBERIA</option>
+              <option value="LIBIA">LIBIA</option>
+              <option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+              <option value="LITUANIA">LITUANIA</option>
+              <option value="LUXEMBURGO">LUXEMBURGO</option>
+              <option value="MACAO">MACAO</option>
+              <option value="MACEDONIA">MACEDONIA</option>
+              <option value="MADAGASCAR">MADAGASCAR</option>
+              <option value="MALASIA">MALASIA</option>
+              <option value="MALASIA - GRAN BRETAÑA">MALASIA - GRAN BRETAÑA</option>
+              <option value="MALAWI">MALAWI</option>
+              <option value="MALI">MALI</option>
+              <option value="MALTA">MALTA</option>
+              <option value="MARRUECOS">MARRUECOS</option>
+              <option value="MAURICIO">MAURICIO</option>
+              <option value="MAURITANIA">MAURITANIA</option>
+              <option value="MEJICO">MEJICO</option>
+              <option value="MICRONESIA">MICRONESIA</option>
+              <option value="MOLDAVIA">MOLDAVIA</option>
+              <option value="MONACO">MONACO</option>
+              <option value="MONGOLIA">MONGOLIA</option>
+              <option value="MONTENEGRO">MONTENEGRO</option>
+              <option value="MOZAMBIQUE">MOZAMBIQUE</option>
+              <option value="MYANMAR">MYANMAR</option>
+              <option value="NAMIBIA">NAMIBIA</option>
+              <option value="NAURU">NAURU</option>
+              <option value="NEPAL">NEPAL</option>
+              <option value="NICARAGUA">NICARAGUA</option>
+              <option value="NIGER">NIGER</option>
+              <option value="NIGERIA">NIGERIA</option>
+              <option value="NORUEGA">NORUEGA</option>
+              <option value="NUEVA ZELANDA">NUEVA ZELANDA</option>
+              <option value="OMAN">OMAN</option>
+              <option value="PAKISTAN">PAKISTAN</option>
+              <option value="PALESTINA EONU">PALESTINA EONU</option>
+              <option value="PANAMA">PANAMA</option>
+              <option value="PAPUA NUEVA GUINEA">PAPUA NUEVA GUINEA</option>
+              <option value="PARAGUAY">PARAGUAY</option>
+              <option value="PERU">PERU</option>
+              <option value="POLONIA">POLONIA</option>
+              <option value="PORTUGAL">PORTUGAL</option>
+              <option value="PUERTO RICO">PUERTO RICO</option>
+              <option value="QATAR">QATAR</option>
+              <option value="REINO UNIDO">REINO UNIDO</option>
+              <option value="REP. DEMOCRATICA DEL CONGO (EX-ZAIRE)">REP. DEMOCRATICA DEL CONGO (EX-ZAIRE)</option>
+              <option value="REPUBLICA CHECA">REPUBLICA CHECA</option>
+              <option value="REUNION-COMO">REUNION-COMO</option>
+              <option value="RUANDA">RUANDA</option>
+              <option value="RUMANIA">RUMANIA</option>
+              <option value="RUSIA">RUSIA</option>
+              <option value="SALOMON">SALOMON</option>
+              <option value="SAMOA OCCIDENTAL">SAMOA OCCIDENTAL</option>
+              <option value="SAN CRISTOBAL Y NEVIS">SAN CRISTOBAL Y NEVIS</option>
+              <option value="SAN MARINO">SAN MARINO</option>
+              <option value="SAN VICENTE">SAN VICENTE</option>
+              <option value="SANTA LUCIA">SANTA LUCIA</option>
+              <option value="SANTO TOME Y PRINCIPE">SANTO TOME Y PRINCIPE</option>
+              <option value="SEICHELLES">SEICHELLES</option>
+              <option value="SENEGAL">SENEGAL</option>
+              <option value="SENEGAMBIA">SENEGAMBIA</option>
+              <option value="SERBIA">SERBIA</option>
+              <option value="SIERRA LEONA">SIERRA LEONA</option>
+              <option value="SINGAPUR">SINGAPUR</option>
+              <option value="SIRIA">SIRIA</option>
+              <option value="SOMALIA">SOMALIA</option>
+              <option value="SRI LANKA">SRI LANKA</option>
+              <option value="SUDAFRICA">SUDAFRICA</option>
+              <option value="SUDAN">SUDAN</option>
+              <option value="SUECIA">SUECIA</option>
+              <option value="SUIZA">SUIZA</option>
+              <option value="SURINAM">SURINAM</option>
+              <option value="SWAZILANDIA">SWAZILANDIA</option>
+              <option value="TADJIKISTAN">TADJIKISTAN</option>
+              <option value="TAIWAN">TAIWAN</option>
+              <option value="TANZANIA">TANZANIA</option>
+              <option value="THAILANDIA">THAILANDIA</option>
+              <option value="TIMOR ORIENTAL">TIMOR ORIENTAL</option>
+              <option value="TOGO">TOGO</option>
+              <option value="TONGA">TONGA</option>
+              <option value="TRINIDAD Y TOBAGO">TRINIDAD Y TOBAGO</option>
+              <option value="TUNEZ">TUNEZ</option>
+              <option value="TURKMENIA">TURKMENIA</option>
+              <option value="TURQUIA">TURQUIA</option>
+              <option value="TUVALU">TUVALU</option>
+              <option value="UCRANIA">UCRANIA</option>
+              <option value="UGANDA">UGANDA</option>
+              <option value="URUGUAY">URUGUAY</option>
+              <option value="UZBEKISTAN">UZBEKISTAN</option>
+              <option value="VANUATU">VANUATU</option>
+              <option value="VENEZUELA">VENEZUELA</option>
+              <option value="VIETNAM">VIETNAM</option>
+              <option value="YEMEN">YEMEN</option>
+              <option value="ZAMBIA">ZAMBIA</option>
+              <option value="ZIMBABWE">ZIMBABWE</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div
+              class="form-group col-md-4"
+              id="expire_date"
+              style="display: none"
+            >
+              <label style="display: inline-block; text-align: right"
+                >Current card expiration date</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="expire_date"
+                name="expire_date"
+              />
+            </div>
+          </div>
+
+          <!-- Start Input Email -->
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              name="email"
+              placeholder="Enter email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
+            />
+          </div>
+          <!-- End Input Email -->
+          <div class="form-group">
+            <label for="inputName">Country of Nationality</label>
+            <select id="country" name="country" class="form-control">
+              <option value="" disabled selected>Select your country</option>
+              <option value="AFGANISTAN">AFGANISTAN</option>
+              <option value="ALBANIA">ALBANIA</option>
+              <option value="ALEMANIA">ALEMANIA</option>
+              <option value="ANDORRA">ANDORRA</option>
+              <option value="ANGOLA">ANGOLA</option>
+              <option value="ANGUILLA">ANGUILLA</option>
+              <option value="ANTIGUA Y BARBUDA">ANTIGUA Y BARBUDA</option>
+              <option value="ANTILLAS NL.">ANTILLAS NL.</option>
+              <option value="APATRIDA">APATRIDA</option>
+              <option value="ARABIA">ARABIA SAUDI</option>
+              <option value="ARGELIA">ARGELIA</option>
+              <option value="ARGENTINA">ARGENTINA</option>
+              <option value="ARMENIA">ARMENIA</option>
+              <option value="ARUBA">ARUBA</option>
+              <option value="AUSTRALIA">AUSTRALIA</option>
+              <option value="AUSTRIA">AUSTRIA</option>
+              <option value="AZERBAYAN">AZERBAYAN</option>
+              <option value="BAHAMAS">BAHAMAS</option>
+              <option value="BAHREIN">BAHREIN</option>
+              <option value="BANGLADESH">BANGLADESH</option>
+              <option value="BARBADOS">BARBADOS</option>
+              <option value="BELGICA">BELGICA</option>
+              <option value="BELICE">BELICE</option>
+              <option value="BENIN">BENIN</option>
+              <option value="BHUTAN">BHUTAN</option>
+              <option value="BIELORRUSIA O BELARUS">BIELORRUSIA O BELARUS</option>
+              <option value="BOLIVIA">BOLIVIA</option>
+              <option value="BOSNIA-HERZEGOVINA">BOSNIA-HERZEGOVINA</option>
+              <option value="BOTSWANA">BOTSWANA</option>
+              <option value="BRASIL">BRASIL</option>
+              <option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+              <option value="BULGARIA">BULGARIA</option>
+              <option value="BURKINA FASO">BURKINA FASO</option>
+              <option value="BURUNDI">BURUNDI</option>
+              <option value="CABO VERDE">CABO VERDE</option>
+              <option value="CAMBOYA">CAMBOYA</option>
+              <option value="CAMERUN">CAMERUN</option>
+              <option value="CANADA">CANADA</option>
+              <option value="CENTROAFRICA REPUBLICA">CENTROAFRICA REPUBLICA</option>
+              <option value="CHAD">CHAD</option>
+              <option value="CHILE">CHILE</option>
+              <option value="CHINA">CHINA</option>
+              <option value="CHIPRE">CHIPRE</option>
+              <option value="COLOMBIA">COLOMBIA</option>
+              <option value="COMORES">COMORES</option>
+              <option value="CONGO BRAZZAVILLE">CONGO BRAZZAVILLE</option>
+              <option value="COREA, REP. POP. DEMOC.">COREA, REP. POP. DEMOC.</option>
+              <option value="COREA, REPUBLICA">COREA, REPUBLICA</option>
+              <option value="COSTA DE MARFIL">COSTA DE MARFIL</option>
+              <option value="COSTA RICA">COSTA RICA</option>
+              <option value="CROACIA">CROACIA</option>
+              <option value="CUBA">CUBA</option>
+              <option value="DINAMARCA">DINAMARCA</option>
+              <option value="DJIBOUTI">DJIBOUTI</option>
+              <option value="DOMINICA">DOMINICA</option>
+              <option value="DOMINICANA REPUBLICA">DOMINICANA REPUBLICA</option>
+              <option value="ECUADOR">ECUADOR</option>
+              <option value="EEUU">EEUU</option>
+              <option value="EGIPTO">EGIPTO</option>
+              <option value="EL SALVADOR">EL SALVADOR</option>
+              <option value="EL VATICANO">EL VATICANO</option>
+              <option value="EMIRATOS ARABES UNIDOS">EMIRATOS ARABES UNIDOS</option>
+              <option value="ERITREA">ERITREA</option>
+              <option value="ESLOVAQUIA">ESLOVAQUIA</option>
+              <option value="ESLOVENIA">ESLOVENIA</option>
+              <option value="ESPAÑA">ESPAÑA</option>
+              <option value="ESTONIA">ESTONIA</option>
+              <option value="ETIOPIA">ETIOPIA</option>
+              <option value="FIDJI">FIDJI</option>
+              <option value="FILIPINAS">FILIPINAS</option>
+              <option value="FINLANDIA">FINLANDIA</option>
+              <option value="FRANCIA">FRANCIA</option>
+              <option value="GABON">GABON</option>
+              <option value="GAMBIA">GAMBIA</option>
+              <option value="GEORGIA">GEORGIA</option>
+              <option value="GHANA">GHANA</option>
+              <option value="GRANADA REPUBLICA">GRANADA REPUBLICA</option>
+              <option value="GRECIA">GRECIA</option>
+              <option value="GUATEMALA">GUATEMALA</option>
+              <option value="GUAYANA">GUAYANA</option>
+              <option value="GUINEA">GUINEA ECUATORIAL</option>
+              <option value="GUINEA REPUBLICA">GUINEA REPUBLICA</option>
+              <option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+              <option value="HAITI">HAITI</option>
+              <option value="HOLANDA">HOLANDA</option>
+              <option value="HONDURAS">HONDURAS</option>
+              <option value="HUNGRIA">HUNGRIA</option>
+              <option value="INDIA">INDIA</option>
+              <option value="INDONESIA">INDONESIA</option>
+              <option value="IRAK">IRAK</option>
+              <option value="IRAN">IRAN</option>
+              <option value="IRLANDA">IRLANDA</option>
+              <option value="ISLANDIA">ISLANDIA</option>
+              <option value="ISLAS MARSCHALL">ISLAS MARSCHALL</option>
+              <option value="ISRAEL">ISRAEL</option>
+              <option value="ITALIA">ITALIA</option>
+              <option value="JAMAICA">JAMAICA</option>
+              <option value="JAPON">JAPON</option>
+              <option value="JORDANIA">JORDANIA</option>
+              <option value="KAZAJSTAN">KAZAJSTAN</option>
+              <option value="KENIA">KENIA</option>
+              <option value="KIRGUISTAN">KIRGUISTAN</option>
+              <option value="KIRIBATI">KIRIBATI</option>
+              <option value="KUWAIT">KUWAIT</option>
+              <option value="LAOS">LAOS</option>
+              <option value="LAS MALDIVAS">LAS MALDIVAS</option>
+              <option value="LESOTHO">LESOTHO</option>
+              <option value="LETONIA">LETONIA</option>
+              <option value="LIBANO">LIBANO</option>
+              <option value="LIBERIA">LIBERIA</option>
+              <option value="LIBIA">LIBIA</option>
+              <option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+              <option value="LITUANIA">LITUANIA</option>
+              <option value="LUXEMBURGO">LUXEMBURGO</option>
+              <option value="MACAO">MACAO</option>
+              <option value="MACEDONIA">MACEDONIA</option>
+              <option value="MADAGASCAR">MADAGASCAR</option>
+              <option value="MALASIA">MALASIA</option>
+              <option value="MALASIA - GRAN BRETAÑA">MALASIA - GRAN BRETAÑA</option>
+              <option value="MALAWI">MALAWI</option>
+              <option value="MALI">MALI</option>
+              <option value="MALTA">MALTA</option>
+              <option value="MARRUECOS">MARRUECOS</option>
+              <option value="MAURICIO">MAURICIO</option>
+              <option value="MAURITANIA">MAURITANIA</option>
+              <option value="MEJICO">MEJICO</option>
+              <option value="MICRONESIA">MICRONESIA</option>
+              <option value="MOLDAVIA">MOLDAVIA</option>
+              <option value="MONACO">MONACO</option>
+              <option value="MONGOLIA">MONGOLIA</option>
+              <option value="MONTENEGRO">MONTENEGRO</option>
+              <option value="MOZAMBIQUE">MOZAMBIQUE</option>
+              <option value="MYANMAR">MYANMAR</option>
+              <option value="NAMIBIA">NAMIBIA</option>
+              <option value="NAURU">NAURU</option>
+              <option value="NEPAL">NEPAL</option>
+              <option value="NICARAGUA">NICARAGUA</option>
+              <option value="NIGER">NIGER</option>
+              <option value="NIGERIA">NIGERIA</option>
+              <option value="NORUEGA">NORUEGA</option>
+              <option value="NUEVA ZELANDA">NUEVA ZELANDA</option>
+              <option value="OMAN">OMAN</option>
+              <option value="PAKISTAN">PAKISTAN</option>
+              <option value="PALESTINA EONU">PALESTINA EONU</option>
+              <option value="PANAMA">PANAMA</option>
+              <option value="PAPUA NUEVA GUINEA">PAPUA NUEVA GUINEA</option>
+              <option value="PARAGUAY">PARAGUAY</option>
+              <option value="PERU">PERU</option>
+              <option value="POLONIA">POLONIA</option>
+              <option value="PORTUGAL">PORTUGAL</option>
+              <option value="PUERTO RICO">PUERTO RICO</option>
+              <option value="QATAR">QATAR</option>
+              <option value="REINO UNIDO">REINO UNIDO</option>
+              <option value="REP. DEMOCRATICA DEL CONGO (EX-ZAIRE)">REP. DEMOCRATICA DEL CONGO (EX-ZAIRE)</option>
+              <option value="REPUBLICA CHECA">REPUBLICA CHECA</option>
+              <option value="REUNION-COMO">REUNION-COMO</option>
+              <option value="RUANDA">RUANDA</option>
+              <option value="RUMANIA">RUMANIA</option>
+              <option value="RUSIA">RUSIA</option>
+              <option value="SALOMON">SALOMON</option>
+              <option value="SAMOA OCCIDENTAL">SAMOA OCCIDENTAL</option>
+              <option value="SAN CRISTOBAL Y NEVIS">SAN CRISTOBAL Y NEVIS</option>
+              <option value="SAN MARINO">SAN MARINO</option>
+              <option value="SAN VICENTE">SAN VICENTE</option>
+              <option value="SANTA LUCIA">SANTA LUCIA</option>
+              <option value="SANTO TOME Y PRINCIPE">SANTO TOME Y PRINCIPE</option>
+              <option value="SEICHELLES">SEICHELLES</option>
+              <option value="SENEGAL">SENEGAL</option>
+              <option value="SENEGAMBIA">SENEGAMBIA</option>
+              <option value="SERBIA">SERBIA</option>
+              <option value="SIERRA LEONA">SIERRA LEONA</option>
+              <option value="SINGAPUR">SINGAPUR</option>
+              <option value="SIRIA">SIRIA</option>
+              <option value="SOMALIA">SOMALIA</option>
+              <option value="SRI LANKA">SRI LANKA</option>
+              <option value="SUDAFRICA">SUDAFRICA</option>
+              <option value="SUDAN">SUDAN</option>
+              <option value="SUECIA">SUECIA</option>
+              <option value="SUIZA">SUIZA</option>
+              <option value="SURINAM">SURINAM</option>
+              <option value="SWAZILANDIA">SWAZILANDIA</option>
+              <option value="TADJIKISTAN">TADJIKISTAN</option>
+              <option value="TAIWAN">TAIWAN</option>
+              <option value="TANZANIA">TANZANIA</option>
+              <option value="THAILANDIA">THAILANDIA</option>
+              <option value="TIMOR ORIENTAL">TIMOR ORIENTAL</option>
+              <option value="TOGO">TOGO</option>
+              <option value="TONGA">TONGA</option>
+              <option value="TRINIDAD Y TOBAGO">TRINIDAD Y TOBAGO</option>
+              <option value="TUNEZ">TUNEZ</option>
+              <option value="TURKMENIA">TURKMENIA</option>
+              <option value="TURQUIA">TURQUIA</option>
+              <option value="TUVALU">TUVALU</option>
+              <option value="UCRANIA">UCRANIA</option>
+              <option value="UGANDA">UGANDA</option>
+              <option value="URUGUAY">URUGUAY</option>
+              <option value="UZBEKISTAN">UZBEKISTAN</option>
+              <option value="VANUATU">VANUATU</option>
+              <option value="VENEZUELA">VENEZUELA</option>
+              <option value="VIETNAM">VIETNAM</option>
+              <option value="YEMEN">YEMEN</option>
+              <option value="ZAMBIA">ZAMBIA</option>
+              <option value="ZIMBABWE">ZIMBABWE</option>
+            </select>
+          </div>
+
+          <!-- End Input Date -->
+
+          <div class="form-row">
+            <!-- Start Input Date -->
+            <div class="form-group col-md-4">
+              <label for="inputDate"></label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                name="phone"
+                required
+              />
+            </div>
+          </div>
+          <hr />
+
+          <!-- Start Submit Button -->
+          <button
+            class="btn btn-primary btn-block col-lg-2"
+            name="submit"
+            value="submit"
+            type="submit"
+            data-bs-toggle="modal" 
+            data-bs-target="#myModal"
+          >
+            Submit
+          </button>
+          <!-- End Submit Button -->
+          {% if messages %}
+         
+
+          <!-- The Modal -->
+
+
+
+{% endif %}
+        </form>
+        <!-- End Form -->
+      </div>
+      <!-- End Card Body -->
+    </div>
+    <!-- End Card -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--  Start script for province procedures -->
+    <script>
+      let province = {
+        "A Coruña": [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-ASILO INFORMACION",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADOS UE",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUT. RESIDENCIA POR OTRAS CIRCUNSTANCIAS EXCEPCIONALES",
+          "AUTORIZACION DE RESIDENCIA TEMPORAL Y TRABAJO POR CUENTA AJENA INICIAL",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES",
+          "AUTORIZACIÓN DE RESIDENCIA LARGA DURACIÓN Y LARGA DURACIÓN-COMUNIDAD EUROPEA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "AUTORIZACIÓN DE TRABAJO PARA ESTUDIANTES",
+          "ESTANCIA POR ESTUDIOS",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "PRÓRROGA DE ESTANCIA POR ESTUDIOS",
+          "RENOVACIONES DE AUT. DE RESIDENCIA  y/o  AUT. DE RESIDENCIA Y TRABAJO",
+          "RENOVACIONES DE AUTORIZACIÓN DE RESIDENCIA CON TRABAJO",
+          "Renovación Autorizacion Residencia por Reagrupación Familiar",
+          "RENOVACIÓN DE AUT. DE RESIDENCIA TEMPORAL NO LUCRATIVA",
+        ],
+        Albacete: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE (NO COMUNITARIOS)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA-SOLICITUD ASILO",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "SOLICITUD DE AUTORIZACIONES",
+        ],
+        Alicante: [
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUTORIZACIONES DE RESIDENCIA TEMPORAL POR MOTIVOS DE ARRAIGO Y OTRAS CIRCUNSTANCIAS EXCEPCIONALES",
+          "AUTORIZACIONES DE TRABAJO",
+          "AUTORIZACIÓN DE REGRESO",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS EN ESPAÑA",
+          "INFORMACIÓN",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NO NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "MODIFICACIÓN de las SITUACIONES (sujeto legitimado EXTRANJERO)",
+          "Recuperación de la autorización de larga duración",
+          "REGISTRO",
+          "Renovaciones, Prórrogas y Modificaciones",
+          "TARJETA DE RESIDENCIA TEMPORAL DE FAMILIAR NO COMUNITARIO DE CIUDADANO DE LA UNIÓN EUROPEA",
+          "Trámite documentación nacionales terceros países familiares de nacionales del Reino Unido (Brexit",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+          "Asignación de N.I.E.",
+          "Certificado de residente o no residente",
+          "CERTIFICADOS UE",
+        ],
+        Almería: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NO NACIDOS EN ESPAÑA",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL Y TRABAJO INICIAL POR CUENTA AJENA",
+          "REGISTRO",
+          "Trámite documentación nacionales terceros países familiares de nacionales del Reino Unido (Brexit)",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+        ],
+        Araba: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+        ],
+        Asturias: [
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES POR ARRAIGO",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+        ],
+        Ávila: [
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "SOLICITUD DE AUTORIZACIONES",
+        ],
+        Badajoz: [
+          "INFORMACIÓN",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-RECOGIDA CERTIFICADO Y AUTORIZACIÓN DE REGRESO",
+          "POLICÍA-RECOGIDA DE TARJETA ROJA (PROTECCIÓN INTERNACIONAL)",
+        ],
+        Barcelona: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE (NO COMUNITARIOS)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN DE TARJETAS CUYA AUTORIZACIÓN RESUELVE LA DIRECCIÓN GENERAL DE MIGRACIONES",
+          "AUTORIZACIÓN DE REGRESO",
+          "AUTORIZACIÓN DE REGRESO",
+        ],
+        Bizkaia: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          ,
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "INFORMACIÓN",
+          "RENOVACIONES, PRÓRROGAS O MODIFICACIONES",
+          "SOLICITUD DE AUTORIZACIONES INICIALES",
+          "Trámite documentación nacionales terceros países familiares de nacionales del Reino Unido (Brexit)",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+          "Expedición de Carta de Invitación",
+        ],
+        Burgos: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - Certificados / Comunitarios",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-RECOGIDA DE TARJETA ROJA (PROTECCIÓN INTERNACIONAL)",
+        ],
+        Cáceres: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+        ],
+        Cádiz: [
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE (NO COMUNITARIOS)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "INFORMACIÓN",
+        ],
+        Cantabria: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICÍA-RECOGIDA DE TARJETA ROJA (PROTECCIÓN INTERNACIONAL)",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUTORIZACIONES DE RESIDENCIA POR REAGRUPACIÓN FAMILIAR",
+          "INFORMACIÓN",
+          "RESIDENCIA INICIAL",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "RENOVACIONES, PRÓRROGAS Y MODIFICACIONES",
+        ],
+        Castellón: [
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "OLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUTORIZACIONES DE RESIDENCIA",
+          "AUTORIZACIONES DE RESIDENCIA Y TRABAJO",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "INFORMACIÓN",
+        ],
+        Ceuta: [
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "AUTORIZACIONES DE RESIDENCIA",
+          "TRÁMITES GENERALES DE TRABAJO",
+        ],
+        "Ciudad Real": [
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "AUTORIZACIONES INICALES DE RESIDENCIA POR REAGRUPACIÓN FAMILIAR",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES POR ARRAIGO",
+          "UTORIZACIÓN PARA TRABAJAR",
+          "AUTORIZACIÓN ESTANCIA INICIAL POR ESTUDIOS",
+          "Información y Registro",
+          "Recuperación de la autorización de larga duración",
+          "TARJETA RESIDENCIA DE FAMILIAR NO COMUNITARIO DE CIUDADANO DE LA UNIÓN EUROPEA",
+        ],
+        Córdoba: [
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "SOLICITUD DE AUTORIZACIONES",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+        ],
+        Cuenca: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "OLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUTORIZACIONES INICIALES DE TRABAJO",
+          "AUTORIZACIÓN DE REGRESO",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NO NACIDOS EN ESPAÑA",
+          "CERTIFICADO EMIGRANTE RETORNADO",
+          "AUTORIZACIÓN DE RESIDENCIA LARGA DURACIÓN Y LARGA DURACIÓN-COMUNIDAD EUROPEA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "INCIDENCIAS TRÁMITES EXTRANJERÍA",
+          "INFORMACIÓN",
+          "PRÓRROGA DE ESTANCIA POR ESTUDIOS",
+          "Recuperación de la autorización de larga duración UE",
+          "RENOVACIONES DE AUTORIZACIÓN DE RESIDENCIA CON TRABAJO",
+          "Renovación Autorizacion Residencia por Reagrupación Familiar",
+        ],
+        Gipuzkoa: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+        ],
+        Girona: [
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS Y NO NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA LARGA DURACIÓN Y LARGA DURACIÓN-COMUNIDAD EUROPEA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "ESTANCIA POR ESTUDIOS",
+          "PRÓRROGA DE ESTANCIA POR ESTUDIOS",
+          "RENOVACIONES DE AUT. DE RESIDENCIA  y/o  AUT. DE RESIDENCIA Y TRABAJO",
+          "RENOVACIONES DE AUT. DE RESIDENCIA  y/o  AUT. DE RESIDENCIA Y TRABAJO",
+          "TARJETA RESIDENCIA DE FAMILIAR NO COMUNITARIO DE CIUDADANO DE LA UNIÓN EUROPEA",
+          "rámite para la documentación de nacionales del Reino Unido (Brexit)",
+        ],
+        Granada: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+        Guadalajara: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+        Huelva: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "RENOVACIONES DE AUTORIZACIÓN DE RESIDENCIA CON TRABAJO",
+          "SOLICITUD DE AUTORIZACIONES",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit",
+          "TRÁMITES GENERALES DE TRABAJO",
+        ],
+        Huesca: [
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          ">POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS UE",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO (Y OTROS)",
+          "AUTORIZACION DE RESIDENCIA TEMPORAL Y TRABAJO POR CUENTA AJENA INICIAL",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "OTRAS AUTORIZACIONES",
+          "RENOVACIONES, PRÓRROGAS Y MODIFICACIONES",
+        ],
+        "Illes Balears": [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "OLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-ASILO INFORMACION",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "OLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - PRORROGA DE ESTANCIA CON VISADO",
+          "POLICÍA - PRORROGA DE ESTANCIA SIN VISADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "INFORMACIÓN GENERAL - IBIZA",
+          "INFORMACIÓN GENERAL - MALLORCA",
+          "RENOVACIONES, PRÓRROGAS Y MODIFICACIONES",
+          "SOLICITUD AUTORIZACIONES - IBIZA",
+          "SOLICITUD AUTORIZACIONES - MALLORCA",
+          "TRÁMITE PARA LA DOCUMENTACIÓN DE NACIONALES DEL REINO UNIDO (BREXIT) - MALLORCA",
+          "AUTORIZACIONES DE REGRESO",
+          "Certificado de residente o no residente",
+        ],
+        Jaén: [
+          "OLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+        ],
+        "La Rioja": [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "OLICIA-CERTIFICADOS UE",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS.EXCEPCIONALES ARRAIGO FAMILIAR",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES NACIDOS EN ESPAÑA, HIJOS DE RESIDENTES",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NO NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "FAMILIAR DE COMUNITARIO",
+          "INFORMACIÓN",
+          "REGISTRO",
+          "Trámites para la documentación de nacionales de la Unión Europea",
+        ],
+        "Las Palmas": [
+          "AUTORIZACIÓN DE REGRESO",
+          "NOTIFICACIONES EN TEU-BOE",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "OLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+        León: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+        ],
+        Lleida: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-Expedición de Carta de Invitación",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUT. RESIDENCIA POR OTRAS CIRCUNSTANCIAS EXCEPCIONALES",
+          "UTORIZACIONES DE RESIDENCIA PARA MENORES NO ACOMPAÑADOS Y EXTUTELADOS",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NO NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "Recuperación de la autorización de larga duración",
+          "TARJETA RESIDENCIA DE FAMILIAR NO COMUNITARIO DE CIUDADANO DE LA UNIÓN EUROPEA",
+          "AUTORIZACIÓN DE REGRESO",
+        ],
+        Lugo: [
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "OLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUT. RESIDENCIA POR OTRAS CIRCUNSTANCIAS EXCEPCIONALES",
+          "AUTORIZACION DE RESIDENCIA TEMPORAL Y TRABAJO POR CUENTA AJENA INICIAL",
+          "AUTORIZACION DE RESIDENCIA TEMPORAL Y TRABAJO POR CUENTA PROPIA INICIAL",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NO NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA LARGA DURACIÓN Y LARGA DURACIÓN-COMUNIDAD EUROPEA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "AUTORIZACIÓN DE TRABAJO PARA ESTUDIANTES",
+          "ESTANCIA POR ESTUDIOS",
+          "FAMILIARES DE RESIDENTES COMUNITARIOS",
+          "INFORMACIÓN",
+          "PRÓRROGA DE ESTANCIA POR ESTUDIOS",
+          "Recuperación de la autorización de larga duración",
+          "Recuperación de la autorización de larga duración UE",
+          "ENOVACIONES DE AUTORIZACIÓN DE RESIDENCIA CON TRABAJO",
+          "RENOVACIONES DE RESIDENCIA NO LABORAL",
+          "Residencia Inicial",
+          "Renovación Autorizacion Residencia por Reagrupación Familiar",
+        ],
+        Madrid: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE N.I.E.",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICIA-TOMA DE HUELLA POR IMPOSIBILIDAD DE DESPLAZAMIENTO",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICÍA - RECOGIDA DE LA T.I.E. CUYA AUTORIZACIÓN RESUELVE LA DIRECCIÓN GENERAL DE MIGRACIONES",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN DE TARJETAS CUYA AUTORIZACIÓN RESUELVE LA DIRECCIÓN GENERAL DE MIGRACIONES",
+          "AUT. RES. TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES POR RAZONES HUMANITARIAS, PROTECCIÓN INTERNACIONAL (art. 125) y DISP.",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES POR ARRAIGO",
+          "AUTORIZACIÓN DE RESIDENCIA Y TRABAJO INICIAL POR CUENTA AJENA",
+          "AUTORIZACIÓN DE RESIDENCIA Y TRABAJO INICIAL POR CUENTA PROPIA",
+          "AUTORIZACIÓN DE TRABAJO PARA ESTUDIANTES",
+          "AUTORIZACIÓN RESIDENCIA TEMPORAL DE MENORES NACIDOS EN ESPAÑA, HIJOS DE EXTRANJEROS RESIDENTES LEGALES",
+          "AUTORIZACIÓN RESIDENCIA TEMPORAL DE MENORES NO NACIDOS EN ESPAÑA, HIJOS DE EXTRANJEROS RESIDENTES LEGALES",
+          "AUTORIZACIÓN RESIDENCIA Y TRABAJO POR CIRCUNSTANCIAS EXCEPCIONALES POR VIOLENCIA DE GÉNERO",
+          "REAGRUPACIÓN FAMILIAR INICIAL",
+          "RECUPERACIÓN DE LA RESIDENCIA DE LARGA DURACIÓN",
+          "TARJETA INICIAL DE RESIDENCIA DE FAMILIAR DE CIUDADANO COMUNITARIO",
+          "ASILO - OFICINA DE ASILO Y  REFUGIO. Entrevista Telefónica Trabajador/a  Social. Calle Pradillo",
+          "ASILO - PRIMERA CITA-provincia de Madrid",
+          "ASILO-OFIC. DE ASILO Y REFUGIO.EXP/REN TIE Protección Internacional y Documentos Viaje.c/Pradillo 40",
+          "ASILO-OFICINA DE ASILO Y REFUGIO.&quot,nueva normalidad” Expedición/Renovación Documentos.C/ Pradillo 40",
+          "AUTORIZACIÓN DE REGRESO",
+          "Certificado de residente o no residente",
+        ],
+        Málaga: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASILO INFORMACION",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS RESIDENTES Y NO RESIDENTES O CONCORDANCIA",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICÍA - PRORROGA DE ESTANCIA CON VISADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA-RECOGIDA CERTIFICADO Y AUTORIZACIÓN DE REGRESO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+          "POLICÍA-RECOGIDA DE TARJETA ROJA (PROTECCIÓN INTERNACIONAL)",
+          "Autorizaciones de residencia por circunstancias excepcionales",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL Y TRABAJO INICIAL POR CUENTA AJENA",
+          "FAMILIAR DE CIUDADANO ESPAÑOL",
+          "Reagrupación inicial, Menores y Prórrogas de Estancia por Estudios",
+          "Renovaciones, Modificaciones y Residencia de Larga Duración.",
+          "Tarjetas de familiares de ciudadanos de la Unión Europea",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+        ],
+        Melilla: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - AUTORIZACION EXCEPCIONAL DE ENTRADA",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+        ],
+        Murcia: [
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-Asignación de NIE - Murcia",
+          "POLICIA-Autorización de Regreso - Murcia",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-Expedición de Carta de Invitación - Murcia",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+        Navarra: [
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-Expedición de Carta de Invitación",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "OLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "ARRAIGO-EXCEPCIONALES",
+          "RENOVACIONES, PRÓRROGAS Y MODIFICACIONES",
+          "RESIDENCIA INICIAL DE FAMILIAR COMUNITARIO",
+        ],
+        Orense: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+        ],
+        Palencia: [
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+        ],
+        Pontevedra: [
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS UE",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "INFORMACIÓN",
+          "REGISTRO",
+          "SOLICITUD DE AUTORIZACIONES",
+          "Certificado de residente o no residente",
+          "EXPEDICION DE TARJETA DE IDENTIDAD DE EXTRANJERO",
+        ],
+        Salamanca: [
+          "REGISTRO",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "OLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+        ],
+        "S.Cruz Tenerife": [
+          "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASILO INFORMACION",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+          "POLICÍA - PRORROGA DE ESTANCIA CON VISADO",
+          "POLICÍA - PRORROGA DE ESTANCIA SIN VISADO",
+          "POLICÍA - SOLICITUD DE APATRIDA",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-RECOGIDA DE TARJETA ROJA (PROTECCIÓN INTERNACIONAL)",
+          "AUTORIZACIÓN DE REGRESO - TENERIFE",
+          "SOLICITUD DE AUTORIZACIONES - ISLA DE LA PALMA",
+          "SOLICITUD DE AUTORIZACIONES - TENERIFE",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+        ],
+        Segovia: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "INFORMACIÓN",
+          "PRÓRROGA DE ESTANCIA POR ESTUDIOS",
+          "RENOVACIONES DE AUTORIZACIÓN DE RESIDENCIA CON TRABAJO",
+          "SOLICITUD DE AUTORIZACIONES",
+        ],
+        Sevilla: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE (NO COMUNITARIOS)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "POLICÍA-RECOGIDA DE TARJETA ROJA (PROTECCIÓN INTERNACIONAL)",
+        ],
+        Soria: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADOS UE",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+          "AUTORIZACIONES INICIALES DE TRABAJO",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "INFORMACIÓN",
+          "REGISTRO",
+          "RENOVACIONES, PRÓRROGAS Y MODIFICACIONES",
+          "SOLICITUD DE AUTORIZACIONES",
+          "TARJETA RESIDENCIA DE FAMILIAR NO COMUNITARIO DE CIUDADANO DE LA UNIÓN EUROPEA",
+        ],
+        Tarragona: [
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA - TÍTULOS DE VIAJE",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-EXPEDICIÓN DE CARTA DE INVITACIÓN",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGOj",
+          "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS.EXCEPCIONALES ARRAIGO FAMILIAR",
+          "AUTORIZACIÓN DE RESIDENCIA DE MENORES O INCAPACITADOS NACIDOS EN ESPAÑA",
+          "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR REAGRUPACIÓN FAMILIAR",
+          "RENOVACIONES DE AUT. DE RESIDENCIA  y/o  AUT. DE RESIDENCIA Y TRABAJO",
+          "TARJETA RESIDENCIA DE FAMILIAR NO COMUNITARIO DE CIUDADANO DE LA UNIÓN EUROPEA",
+          "Trámite documentación nacionales terceros países familiares de nacionales del Reino Unido (Brexit)",
+          "Trámite para la documentación de nacionales del Reino Unido (Brexit)",
+          "Asignación de N.I.E.",
+          "AUTORIZACIONES DE REGRESO",
+        ],
+        Teruel: [
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+        Toledo: [
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-AUTORIZACIÓN DE REGRESO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+        ],
+        Valencia: [
+          "AUTORIZACIÓN DE REGRESO",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS Y ASIGNACION NIE",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+          "AUT. RESIDENCIA POR OTRAS CIRCUNSTANCIAS EXCEPCIONALES",
+          "AUTORIZACIÓN DE TRABAJO PARA ESTUDIANTES",
+          "PRÓRROGA DE ESTANCIA POR ESTUDIOS",
+          "TRÁMITES GENERALES DE TRABAJO",
+        ],
+        Valladolid: [
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - OTROS TRÁMITES COMISARIA",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-INFORMACION DE TRÁMITES DE LA COMISARÍA DE POLICIA",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+        Zamora: [
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA-ASIGNACIÓN DE NIE",
+          "POLICIA-CERTIFICADOS UE",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+        ],
+        Zaragoza: [
+          "INFORMACIÓN",
+          "SOLICITUD DE AUTORIZACIONES",
+          "Trámites para la documentación de nacionales de la Unión Europea",
+          "Asignación de N.I.E.",
+          "Certificado de residente o no residente",
+          "POLICIA - RECOGIDA DE TARJETA DE IDENTIDAD DE EXTRANJERO (TIE)",
+          "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+          "POLICIA- SOLICITUD ASILO",
+          "POLICIA-CARTA DE INVITACIÓN",
+          "POLICIA-CERTIFICADO DE REGISTRO DE CIUDADANO DE LA U.E.",
+          "POLICIA-CERTIFICADOS (DE RESIDENCIA, DE NO RESIDENCIA Y DE CONCORDANCIA)",
+          "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+          "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+          "POLICÍA TARJETA CONFLICTO UCRANIA–ПОЛІЦІЯ -КАРТКА ДЛЯ ПЕРЕМІЩЕНИХ ОСІБ ВНАСЛІДОК КОНФЛІКТУ В УКРАЇНІ",
+          "POLICÍA-EXP.TARJETA ASOCIADA AL ACUERDO DE RETIRADA CIUDADANOS BRITÁNICOS Y SUS FAMILIARES (BREXIT)",
+        ],
+      };
+
+      function updateProcedure(data) {
+        let select = data.value;
+        console.log(select);
+        let provinces = province[select];
+        document.getElementById("procedure").innerHTML = "";
+        let option = document.createElement("option");
+        option.text = "-Select-";
+        option.value = "";
+        document.getElementById("procedure").add(option);
+
+        for (let i = 0; i < provinces.length; i++) {
+          let option = document.createElement("option");
+          option.text = provinces[i];
+          option.value = provinces[i];
+          document.getElementById("procedure").add(option);
+        }
+      }
+      // if Coruña is selected and  POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO is selected then date of birth and country of birth should be displayed
+      let extra_fields = [
+        "POLICIA- EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITANTES DE ASILO",
+        "POLICIA- SOLICITUD ASILO",
+        "POLICIA-ASIGNACIÓN DE NIE",
+        "POLICIA-AUTORIZACIÓN DE REGRESO",
+        "POLICÍA - CÉDULA DE INSCRIPCIÓN",
+        "POLICIA - Certificados / Comunitarios",
+        "POLICIA-Asignación de NIE - Murcia",
+        "AUT. RES. TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES POR RAZONES HUMANITARIAS, PROTECCIÓN INTERNACIONAL (art. 125) y DISP",
+        "AUTORIZACIÓN DE RESIDENCIA TEMPORAL POR CIRCUNSTANCIAS EXCEPCIONALES POR ARRAIGO",
+        "AUT. DE RESIDENCIA TEMPORAL POR CIRCUNS. EXCEPCIONALES POR ARRAIGO",
+        "POLICIA-Asignación de NIE - Murcia",
+      ];
+      let country_extra_fields = [
+        "POLICIA-ASILO INFORMACION",
+        "POLICIA-CERTIFICADOS UE",
+        "POLICIA-TOMA DE HUELLA (EXPEDICIÓN DE TARJETA), RENOVACIÓN DE TARJETA DE LARGA DURACIÓN Y DUPLICADO",
+        "POLICIA - TÍTULOS DE VIAJE",
+        "POLICIA - COMUNICACIÓN DE CAMBIO DE DOMICILIO",
+      ];
+      let birth_extra_fields = [
+        "POLICÍA - UCRANIA : SOLICITUD PROTECCIÓN TEMPORAL DESPLAZADOS",
+        "POLICÍA-EXPEDICIÓN/RENOVACIÓN DE DOCUMENTOS DE SOLICITUD DE APATRIDIA",
+        "POLICÍA - SOLICITUD DE APATRIDA",
+        "SOLICITUD DE AUTORIZACIONES",
+        "INFORMACIÓN",
+        "SOLICITUD DE AUTORIZACIONES INICIALES",
+        "Trámite documentación nacionales terceros países familiares de nacionales del Reino Unido (Brexit)",
+        "AUTORIZACIÓN DE RESIDENCIA Y TRABAJO INICIAL POR CUENTA AJENA",
+        "AUTORIZACIÓN DE RESIDENCIA Y TRABAJO INICIAL POR CUENTA PROPIA",
+      ];
+      let return_fields = [
+        "RETURN AUTHORIZATION",
+        "POLICIA-Expedición de Carta de Invitación - Murcia",
+        "POLICIA-Autorización de Regreso - Murcia",
+      ];
+
+      function updateDateOfBirth(data) {
+        let select = data.value;
+        console.log(select);
+        if (
+          select == extra_fields[0] ||
+          select == extra_fields[1] ||
+          select == extra_fields[2] ||
+          select == extra_fields[3] ||
+          select == extra_fields[4] ||
+          select == extra_fields[5] ||
+          select == extra_fields[6] ||
+          select == extra_fields[7] ||
+          select == extra_fields[8] ||
+          select == extra_fields[9] ||
+          select == extra_fields[10]
+        ) {
+          document.getElementById("birth_year").style.display = "block";
+          document.getElementById("country_of_birth").style.display = "block";
+          document.getElementById("expire_date").style.display = "none";
+        } else if (
+          select == country_extra_fields[0] ||
+          select == country_extra_fields[1] ||
+          select == country_extra_fields[2] ||
+          select == country_extra_fields[3] ||
+          select == country_extra_fields[4]
+        ) {
+          document.getElementById("country_of_birth").style.display = "block";
+          document.getElementById("birth_year").style.display = "none";
+          document.getElementById("expire_date").style.display = "none";
+        } else if (
+          select == birth_extra_fields[0] ||
+          select == birth_extra_fields[1] ||
+          select == birth_extra_fields[2] ||
+          select == birth_extra_fields[3] ||
+          select == birth_extra_fields[4] ||
+          select == birth_extra_fields[5] ||
+          select == birth_extra_fields[6] ||
+          select == birth_extra_fields[7] ||
+          select == birth_extra_fields[8]
+        ) {
+          document.getElementById("birth_year").style.display = "block";
+          document.getElementById("country_of_birth").style.display = "none";
+          document.getElementById("expire_date").style.display = "none";
+        } else if (
+          select == return_fields[0] ||
+          select == return_fields[1] ||
+          select == return_fields[2]
+        ) {
+          document.getElementById("birth_year").style.display = "block";
+          document.getElementById("country_of_birth").style.display = "none";
+          document.getElementById("expire_date").style.display = "block";
+        } else {
+          document.getElementById("birth_year").style.display = "none";
+          document.getElementById("country_of_birth").style.display = "none";
+          document.getElementById("expire_date").style.display = "none";
+        }
+      }
+    </script>
+
+    <!-- Start script for radio buttons -->
+    <script>
+      const nie = document.getElementById("nie");
+      const dni = document.getElementById("dni");
+      const passport = document.getElementById("passport");
+
+      function handleRadioClick() {
+        if (document.getElementById("nie_radio").checked) {
+          // display the nie input lable
+          nie.style.display = "inline-block";
+          dni.style.display = "none";
+          passport.style.display = "none";
+          // box.style.display = 'block';
+        } else if (document.getElementById("dni_radio").checked) {
+          // display the dni input lable
+          nie.style.display = "none";
+          dni.style.display = "inline-block";
+          passport.style.display = "none";
+        } else if (document.getElementById("pass_radio").checked) {
+          // display the passport input lable
+          nie.style.display = "none";
+          dni.style.display = "none";
+          passport.style.display = "inline-block";
+        }
+      }
+
+      document
+        .getElementById("nie_radio")
+        .addEventListener("click", handleRadioClick);
+      document
+        .getElementById("dni_radio")
+        .addEventListener("click", handleRadioClick);
+      document
+        .getElementById("pass_radio")
+        .addEventListener("click", handleRadioClick);
+    </script>
+    <!-- Start Scritp for Form -->
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        "use strict";
+        window.addEventListener(
+          "load",
+          function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            let forms = document.getElementsByClassName("needs-validation");
+            // Loop over them and prevent submission
+            let validation = Array.prototype.filter.call(
+              forms,
+              function (form) {
+                form.addEventListener(
+                  "submit",
+                  function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                  },
+                  false
+                );
+              }
+            );
+          },
+          false
+        );
+      })();
+    </script>
+    <script>
+      let input = document.querySelector("#phone");
+      window.intlTelInput(input, {
+        separateDialCode: true,
+        preferredCountries: ["es"],
+      });
+    </script>
+    <!-- End Scritp for Form -->
+  </body>
+</html>

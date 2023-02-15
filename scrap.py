@@ -41,6 +41,7 @@ def run_code():
                                 
                                 options = Options()
                                 print("Open Driver")
+                                
                                 options.add_argument('--headless')
                                 driver = webdriver.Firefox(options=options)
                                 print("Open Window")
@@ -61,6 +62,7 @@ def run_code():
                                                         print("Accept")
                                                         
                                 print("Province Accept")
+                                time.sleep(7)
                                 province_select = driver.find_elements(by=By.XPATH, value='//*[@id="form"]')
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if province_select:
@@ -88,6 +90,7 @@ def run_code():
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnAceptar"]')
                                 if accept_button:
                                         accept_button[0].click()
+                                time.sleep(7)        
                                 print("Press Enter")
                                 Enter = driver.find_elements(By.ID, 'btnEntrar')
                                 if Enter:
@@ -100,6 +103,7 @@ def run_code():
                                 passport1 = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocPas"]')
 
                                 if item.nie != "":
+                                        time.sleep(7)
                                         print("Nie")
                                         nie[0].click()
                                         nieno_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtIdCitado"]')
@@ -125,6 +129,7 @@ def run_code():
 
 
                                 elif item.dni != "":
+                                        time.sleep(7)
                                         print("Dni")
                                         id[0].click()
                                         id_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtIdCitado"]')
@@ -152,6 +157,7 @@ def run_code():
 
 
                                 elif item.passport != "":
+                                        time.sleep(7)
                                         print("Passport")
                                         passport[0].click()
 
@@ -179,13 +185,13 @@ def run_code():
                                                         if option.text == item.country.upper():
                                                                 option.click()
                                                                 break
-
+                                time.sleep(7)
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnEnviar"]')
                                 accept_button[0].click()
 
                                 request_button = driver.find_elements(By.XPATH, '//*[@id="btnEnviar"]')
                                 request_button[0].click()
-
+                                time.sleep(7)
                                 next_buton = driver.find_elements(By.XPATH, '//*[@id="btnSiguiente"]')
                                 next_buton[0].click()
 
@@ -198,11 +204,11 @@ def run_code():
 
                                 email_select = driver.find_elements(by=By.XPATH, value='//*[@id="emailUNO"]')
                                 if email_select:
-                                        email_select[0].send_keys("abdullah.qfnetwork@gmail.com")
+                                        email_select[0].send_keys("dtox142@gmail.com")
 
                                 email_select_repeat = driver.find_elements(by=By.XPATH, value='//*[@id="emailDOS"]')
                                 if email_select_repeat:
-                                        email_select_repeat[0].send_keys("abdullah.qfnetwork@gmail.com")
+                                        email_select_repeat[0].send_keys("dtox142@gmail.com")
 
                                 Reason_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtObservaciones"]')
                                 if Reason_select:
@@ -230,7 +236,7 @@ def run_code():
                                         except Exception as e:
                                                 print("Captha Error", e)
                                         
-                                        api_key = "87c7a62b9d6344c63e3d6a5c2c794018"
+                                        api_key = "5f1392c749eba289f63318932bb3f966"
                                         
 
                                         solver = TwoCaptcha(api_key)
@@ -257,7 +263,7 @@ def run_code():
                                                 
                                                 
                                                 
-                                                
+                                time.sleep(7)               
                                 table1 = driver.find_elements(by=By.XPATH, value='//*[@id="VistaMapa_Datatable"]')
                                 if table1:
                                         print("Table")
@@ -335,7 +341,7 @@ def run_code():
 
                                                                                                         except:
                                                                                                                 print("Appointment not found")
-
+                                time.sleep(7)
                                 province_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtHora"]')
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if province_select:
@@ -349,14 +355,14 @@ def run_code():
                                         Next_button[0].click()
                                         driver.switch_to.alert.accept()
                                 print("Code Send")
-                                time.sleep(3)
+                                time.sleep(7)
                                 driver.find_element(By.ID, value='chkTotal').click()
                                 driver.find_element(By.ID, value='enviarCorreo').click()
                                 time.sleep(60)
                                 # credentials
-                                username = "abdullah.qfnetwork@gmail.com"
+                                username = "dtox142@gmail.com"
                                 # generated app password
-                                app_password = "coquekobqyakqwkq"
+                                app_password = "gbyxuoqeuhpiqtwo"
                                 # https://www.systoolsgroup.com/imap/
                                 gmail_host = 'imap.gmail.com'
                                 # set connection
@@ -419,8 +425,8 @@ def run_code():
                                 smtp_server.ehlo()
                                 smtp_server.starttls()
                                 smtp_server.ehlo()
-                                smtp_server.login("abdullah.qfnetwork@gmail.com", "coquekobqyakqwkq")
-                                smtp_server.sendmail("abdullah.qfnetwork@gmail.com", item.email, msg.as_string())
+                                smtp_server.login("dtox142@gmail.com", "gbyxuoqeuhpiqtwo")
+                                smtp_server.sendmail("dtox142@gmail.com", item.email, msg.as_string())
                                 smtp_server.quit()
 
                                 item.appointment = "Approved"
@@ -430,6 +436,8 @@ def run_code():
                         except Exception as e:
                                 print("Block By Website", e)
                                 driver.quit()
+                                
+                                
 
 schedule.every(5).minutes.do(run_code)
 while True:

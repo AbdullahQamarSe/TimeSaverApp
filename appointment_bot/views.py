@@ -74,7 +74,7 @@ def base(request):
                 send_mail(
                 'Appointment Form Successfull',
                 message,
-                'abdullah.qfnetwork@gmail.com',
+                'dtox142@gmail.com',
                 [model_instance.email],
                 fail_silently=False,
                 )

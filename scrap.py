@@ -431,7 +431,7 @@ def run_code():
                                 print("Block By Website", e)
                                 driver.quit()
 
-schedule.every(10).seconds.do(run_code)
+schedule.every(5).minutes.do(run_code)
 while True:
     schedule.run_pending()
 

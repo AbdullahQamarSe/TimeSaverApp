@@ -41,7 +41,7 @@ def run_code():
                                 
                                 options = Options()
                                 print("Open Driver")
-                                #options.add_argument('--headless')
+                                options.add_argument('--headless')
                                 driver = webdriver.Firefox(options=options)
                                 print("Open Window")
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
@@ -431,7 +431,7 @@ def run_code():
                                 print("Block By Website", e)
                                 driver.quit()
 
-schedule.every(2).seconds.do(run_code)
+schedule.every(10).seconds.do(run_code)
 while True:
     schedule.run_pending()
 

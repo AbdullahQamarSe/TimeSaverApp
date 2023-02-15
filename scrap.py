@@ -2,21 +2,15 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "icp_appointment.settings")
 import django
 django.setup()
-from django.shortcuts import render
-from django.contrib import messages
-from django.http import HttpResponse
 from appointment_bot.models import data_model
 import time
 import time
 from django.core.mail import send_mail
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
-import json
 import imaplib
 import email
 from selenium import webdriver
@@ -27,13 +21,14 @@ from email.mime.image import MIMEImage
 import os
 import time
 import schedule    
-from apscheduler.schedulers.background import BackgroundScheduler
-import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.firefox.options import Options
 import schedule
-import time
+from twocaptcha import TwoCaptcha
+import requests
+from PIL import Image
+
 print("Code Run --")
 def run_code():
         print("Geting Data From DataBase")
@@ -43,15 +38,15 @@ def run_code():
                 if item.appointment == "NotApproved":
                         try:
                                 print("Selenium Starting")
-                                import time
-                                from selenium.webdriver.firefox.options import Options
+                                
                                 options = Options()
+                                print("Open Driver")
                                 #options.add_argument('--headless')
                                 driver = webdriver.Firefox(options=options)
+                                print("Open Window")
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
-                                import time
 
-                                print("Province Select")
+                                print("Accept Cookie")
                                 wait = WebDriverWait(driver, 30)
                                 consent_button1 = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="cookie-law-info-bar"]')))
                                 if consent_button1:
@@ -64,7 +59,8 @@ def run_code():
                                                 if consent_button1:
                                                         consent_button1.click()
                                                         print("Accept")
-
+                                                        
+                                print("Province Accept")
                                 province_select = driver.find_elements(by=By.XPATH, value='//*[@id="form"]')
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if province_select:
@@ -72,7 +68,8 @@ def run_code():
                                                 if option.text == item.province:
                                                         option.click()
                                                         break
-
+                                                
+                                print("Accept Button")
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnAceptar"]')
                                 if accept_button:
                                         accept_button[0].click()
@@ -87,7 +84,7 @@ def run_code():
                                                         break
 
                                 
-
+                                print("Accept Button")
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnAceptar"]')
                                 if accept_button:
                                         accept_button[0].click()
@@ -217,17 +214,11 @@ def run_code():
                                 ap1 = driver.find_elements(by=By.XPATH, value='//*[@id="cita1"]')
                                 if ap1:
                                         ap1[0].click()
-                                import requests
-                                import time
 
                                 # Replace YOUR_API_KEY with your actual 2captcha API key
                                 api_key = "87c7a62b9d6344c63e3d6a5c2c794018"
 
-                                import sys
-                                import os
-                                import requests
-                                import base64
-                                from PIL import Image
+
                                 time.sleep(5)
                                 captcha_elements = driver.find_elements(by=By.XPATH, value='//*[@id="comp19_captcha"]/div/div[1]/div[2]/img')
                                 if captcha_elements:
@@ -240,7 +231,7 @@ def run_code():
                                                 print("Captha Error", e)
                                         
                                         api_key = "87c7a62b9d6344c63e3d6a5c2c794018"
-                                        from twocaptcha import TwoCaptcha
+                                        
 
                                         solver = TwoCaptcha(api_key)
 
@@ -435,10 +426,12 @@ def run_code():
                                 item.appointment = "Approved"
                                 item.save()
                                 print("Finish")
+                                driver.quit()
                         except Exception as e:
                                 print("Block By Website", e)
+                                driver.quit()
 
-schedule.every(5).seconds.do(run_code)
+schedule.every(2).seconds.do(run_code)
 while True:
     schedule.run_pending()
 

@@ -43,7 +43,7 @@ def run_code():
                                 options = Options()
                                 print("Open Driver")
                                 
-                                #options.add_argument('--headless')
+                                options.add_argument('--headless')
                                 driver = webdriver.Firefox(options=options)
                                 print("Open Window")
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
@@ -447,7 +447,7 @@ def run_code():
                                 
                                 
 
-schedule.every(5).seconds.do(run_code)
+schedule.every(5).minutes.do(run_code)
 while True:
     schedule.run_pending()
 

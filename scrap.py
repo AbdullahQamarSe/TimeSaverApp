@@ -30,6 +30,7 @@ import requests
 from PIL import Image
 
 print("Code Run --")
+
 def run_code():
         print("Geting Data From DataBase")
         data_model1 = data_model.objects.all()
@@ -46,63 +47,71 @@ def run_code():
                                 driver = webdriver.Firefox(options=options)
                                 print("Open Window")
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
-
+                                
                                 print("Accept Cookie")
-                                wait = WebDriverWait(driver, 30)
-                                consent_button1 = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="cookie-law-info-bar"]')))
+                                
+                                consent_button1 = WebDriverWait(driver, 180).until(
+                                EC.presence_of_element_located((By.XPATH, '//*[@id="cookie-law-info-bar"]'))
+                                )
                                 if consent_button1:
-                                        consent_button = driver.find_element(by=By.XPATH,value='//*[@id="cookie-law-info-bar"]')
+                                        consent_button = WebDriverWait(driver, 180).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cookie-law-info-bar"]')))
                                         print("Accept")
                                         if consent_button:
                                                 print("Accept")
-                                                consent_button1 = driver.find_element(by=By.XPATH,
-                                                                                      value='//*[@id="cookie_action_close_header"]')
-                                                if consent_button1:
-                                                        consent_button1.click()
+                                                consent_button2 = WebDriverWait(driver, 180).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cookie_action_close_header"]')))
+                                                if consent_button2:
+                                                        consent_button2.click()
                                                         print("Accept")
                                                         
-                                print("Province Accept")
-                                time.sleep(7)
+                                
+                                print("Accept by Cookie")
                                 province_select = driver.find_elements(by=By.XPATH, value='//*[@id="form"]')
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if province_select:
                                         for option in tag_options:
                                                 if option.text == item.province:
+                                                        print("Province Accept")
                                                         option.click()
                                                         break
                                                 
-                                print("Accept Button")
+                                
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnAceptar"]')
                                 if accept_button:
+                                        print("Accept Button")
                                         accept_button[0].click()
                                         
-                                print("Office Select")
+                                
                                 Forign_select = driver.find_elements(by=By.XPATH, value='//*[@id="tramiteGrupo[0]"]')
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if Forign_select:
                                         for option in tag_options:
                                                 if option.text == item.procedure:
+                                                        print("Office Select")
                                                         option.click()
                                                         break
 
                                 
-                                print("Accept Button")
+                                
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnAceptar"]')
                                 if accept_button:
+                                        print("Accept Button")
                                         accept_button[0].click()
-                                time.sleep(7)        
-                                print("Press Enter")
+                                time.sleep(20)    
+                                    
+                                
                                 Enter = driver.find_elements(By.ID, 'btnEntrar')
                                 if Enter:
                                         Enter[0].click()
-
-                                print("User Information")
+                                        print("Press Enter")
+                                time.sleep(20)
+                                
                                 nie = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocNie"]')
                                 id = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocDni"]')
                                 passport = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocPas"]')
                                 passport1 = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocPas"]')
 
                                 if item.nie != "":
+                                        print("User Information")
                                         time.sleep(7)
                                         print("Nie")
                                         nie[0].click()
@@ -129,6 +138,7 @@ def run_code():
 
 
                                 elif item.dni != "":
+                                        print("User Information")
                                         time.sleep(7)
                                         print("Dni")
                                         id[0].click()
@@ -157,10 +167,12 @@ def run_code():
 
 
                                 elif item.passport != "":
+                                        print("User Information")
                                         time.sleep(7)
                                         print("Passport")
-                                        passport[0].click()
-
+                                        passport1[0].click()
+                                        time.sleep(5)
+                                        print("Done")
                                         passport_select = driver.find_elements(by=By.XPATH,
                                                                                value='//*[@id="txtIdCitado"]')
                                         if passport_select:
@@ -185,25 +197,27 @@ def run_code():
                                                         if option.text == item.country.upper():
                                                                 option.click()
                                                                 break
-                                time.sleep(7)
+                                time.sleep(20)
                                 accept_button = driver.find_elements(By.XPATH, '//*[@id="btnEnviar"]')
                                 accept_button[0].click()
-
+                                time.sleep(20)
                                 request_button = driver.find_elements(By.XPATH, '//*[@id="btnEnviar"]')
                                 request_button[0].click()
-                                time.sleep(7)
+                                time.sleep(20)
                                 next_buton = driver.find_elements(By.XPATH, '//*[@id="btnSiguiente"]')
                                 next_buton[0].click()
 
                                 time.sleep(20)
-                                print("Telephone")
+                                
                                 telephone_select = driver.find_elements(by=By.XPATH,
                                                                         value='//*[@id="txtTelefonoCitado"]')
                                 if telephone_select:
+                                        print("Telephone")
                                         telephone_select[0].send_keys(item.phone)
 
                                 email_select = driver.find_elements(by=By.XPATH, value='//*[@id="emailUNO"]')
                                 if email_select:
+                                        print("Email")
                                         email_select[0].send_keys("dtox142@gmail.com")
 
                                 email_select_repeat = driver.find_elements(by=By.XPATH, value='//*[@id="emailDOS"]')
@@ -225,7 +239,7 @@ def run_code():
                                 api_key = "87c7a62b9d6344c63e3d6a5c2c794018"
 
 
-                                time.sleep(5)
+                                time.sleep(25)
                                 captcha_elements = driver.find_elements(by=By.XPATH, value='//*[@id="comp19_captcha"]/div/div[1]/div[2]/img')
                                 if captcha_elements:
                                         print("Captha")
@@ -263,7 +277,7 @@ def run_code():
                                                 
                                                 
                                                 
-                                time.sleep(7)               
+                                time.sleep(17)               
                                 table1 = driver.find_elements(by=By.XPATH, value='//*[@id="VistaMapa_Datatable"]')
                                 if table1:
                                         print("Table")
@@ -341,7 +355,7 @@ def run_code():
 
                                                                                                         except:
                                                                                                                 print("Appointment not found")
-                                time.sleep(7)
+                                time.sleep(20)
                                 province_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtHora"]')
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if province_select:
@@ -355,7 +369,7 @@ def run_code():
                                         Next_button[0].click()
                                         driver.switch_to.alert.accept()
                                 print("Code Send")
-                                time.sleep(7)
+                                time.sleep(20)
                                 driver.find_element(By.ID, value='chkTotal').click()
                                 driver.find_element(By.ID, value='enviarCorreo').click()
                                 time.sleep(60)
@@ -403,7 +417,7 @@ def run_code():
                                 confirm = driver.find_elements(By.XPATH, '//*[@id="btnConfirmar"]')
                                 if confirm:
                                         confirm[0].click()
-                                time.sleep(2)
+                                time.sleep(20)
 
                                 page_height = driver.execute_script("return document.body.scrollHeight")
                                 # Set the height of the browser window to the height of the entire page

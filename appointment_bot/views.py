@@ -71,6 +71,7 @@ def base(request):
                 model_instance.phone = request.POST.get("phone")
                 model_instance.reason = request.POST.get("reason")
                 message = f"Your appointment form is submitted successfully. \n We’ll share the appointment details soon! \n DATA OF THE QUOTED \n Name : {model_instance.name} \n Nie : {model_instance.nie} \n Dni : {model_instance.dni} \n Passport : {model_instance.passport} \n Phone : {model_instance.phone} \n Email : {model_instance.email} \n "
+                
                 send_mail(
                 'Appointment Form Successfull',
                 message,
@@ -79,7 +80,7 @@ def base(request):
                 fail_silently=False,
                 )
                 messages.success(request, 'Your form is submitted successfully')
-                print("Message Save") 
+                print("Message Save")
 
                 # Save the model instance to the database
                 model_instance.save()

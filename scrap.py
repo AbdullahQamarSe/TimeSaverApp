@@ -43,7 +43,7 @@ def run_code():
                                 options = Options()
                                 print("Open Driver")
                                 
-                                options.add_argument('--headless')
+                                #options.add_argument('--headless')
                                 driver = webdriver.Firefox(options=options)
                                 print("Open Window")
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
@@ -53,12 +53,15 @@ def run_code():
                                 consent_button1 = WebDriverWait(driver, 300).until(
                                 EC.presence_of_element_located((By.XPATH, '//*[@id="cookie-law-info-bar"]'))
                                 )
+                                time.sleep(3)
                                 if consent_button1:
                                         consent_button = WebDriverWait(driver, 300).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cookie-law-info-bar"]')))
                                         print("Accept")
+                                        time.sleep(3)
                                         if consent_button:
                                                 print("Accept")
                                                 consent_button2 = WebDriverWait(driver, 300).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cookie_action_close_header"]')))
+                                                time.sleep(3)
                                                 if consent_button2:
                                                         consent_button2.click()
                                                         print("Accept")
@@ -79,7 +82,7 @@ def run_code():
                                         print("Accept Button")
                                         accept_button[0].click()
                                         
-                                
+                                time.sleep(10)
                                 Forign_select = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="tramiteGrupo[0]"]')))
                                 tag_options = driver.find_elements(By.TAG_NAME, 'option')
                                 if Forign_select:
@@ -89,12 +92,12 @@ def run_code():
                                                         option.click()
                                                         break
 
-                                
+                                time.sleep(3)
                                 accept_button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="btnAceptar"]')))
                                 if accept_button:
                                         print("Accept Button")
                                         accept_button[0].click()   
-                                    
+                                time.sleep(3)    
                                 Enter = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.ID, 'btnEntrar')))
                                 if Enter:
                                         Enter[0].click()
@@ -103,7 +106,7 @@ def run_code():
                                 nie = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="rdbTipoDocNie"]')))
                                 id = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocDni"]')
                                 passport = driver.find_elements(by=By.XPATH, value='//*[@id="rdbTipoDocPas"]')
-
+                                time.sleep(3)
                                 if item.nie != "":
                                         print("User Information")
                                         time.sleep(7)
@@ -161,11 +164,12 @@ def run_code():
 
 
                                 elif item.passport != "":
+                                        time.sleep(3)
                                         print("User Information")
-                                        time.sleep(7)
+                                        time.sleep(3)
                                         print("Passport")
                                         passport[0].click()
-                                        time.sleep(5)
+                                        time.sleep(3)
                                         print("Done")
                                         passport_select = driver.find_elements(by=By.XPATH,value='//*[@id="txtIdCitado"]')
                                         if passport_select:
@@ -192,13 +196,13 @@ def run_code():
                                                                 break
                                 accept_button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="btnEnviar"]')))
                                 accept_button[0].click()
-                                
+                                time.sleep(3)
                                 request_button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="btnEnviar"]')))
                                 request_button[0].click()
-
+                                time.sleep(3)
                                 next_buton = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="btnSiguiente"]')))
                                 next_buton[0].click()
-                                
+                                time.sleep(3)
                                 telephone_select = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="txtTelefonoCitado"]')))
                                 if telephone_select:
                                         print("Telephone")
@@ -216,11 +220,11 @@ def run_code():
                                 Reason_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtObservaciones"]')
                                 if Reason_select:
                                         Reason_select[0].send_keys("Many Reasons")
-                                time.sleep(20)
+                                time.sleep(3)
                                 Next_button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="btnSiguiente"]')))
                                 Next_button[0].click()
                                 
-                                time.sleep(60)
+                                time.sleep(3)
                                 print("Appointment")
                                 ap1 = driver.find_elements(by=By.XPATH, value='//*[@id="cita1"]')
                                 if ap1:
@@ -411,7 +415,7 @@ def run_code():
                                 confirm = driver.find_elements(By.XPATH, '//*[@id="btnConfirmar"]')
                                 if confirm:
                                         confirm[0].click()
-                                time.sleep(60)
+                                time.sleep(3)
 
                                 page_height = driver.execute_script("return document.body.scrollHeight")
                                 # Set the height of the browser window to the height of the entire page
@@ -447,7 +451,6 @@ def run_code():
                                 
                                 
 
-schedule.every(5).minutes.do(run_code)
+schedule.every(20).minutes.do(run_code)
 while True:
     schedule.run_pending()
-

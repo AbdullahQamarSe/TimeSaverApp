@@ -1,22 +1,28 @@
 from selenium import webdriver
-from PIL import Image
-import requests
-from selenium.webdriver.common.by import By
-api_key = "87c7a62b9d6344c63e3d6a5c2c794018"
-from twocaptcha import TwoCaptcha
+from selenium.webdriver.common.proxy import Proxy, ProxyType
 
-solver = TwoCaptcha(api_key)
+PROXY_HOST = '202.159.60.145'
+PROXY_PORT = 443
 
-try:
-        result = solver.normal("download.png")
+# Set up a proxy object
+proxy = Proxy({
+    'proxyType': ProxyType.MANUAL,
+    'httpProxy': f'{PROXY_HOST}:{PROXY_PORT}',
+    'ftpProxy': f'{PROXY_HOST}:{PROXY_PORT}',
+    'sslProxy': f'{PROXY_HOST}:{PROXY_PORT}',
+})
 
-except Exception as e:
-        print("Captha Error", e)
+# Set up a Firefox webdriver with the proxy object
+driver = webdriver.Firefox(proxy=proxy)
 
+# Navigate to a website to test the proxy
+driver.get('https://www.whatismyip.com/')
+
+# Check if the proxy is working
+if PROXY_HOST in driver.page_source:
+    print('Proxy is working')
 else:
-        try:
-                print(result)
-                code = result['code']
-                print(code)
-        except Exception as e:
-                print("Captha Error", e)  
+    print('Proxy is not working')
+    
+# Close the webdriver
+driver.quit()

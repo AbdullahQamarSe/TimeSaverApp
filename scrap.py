@@ -47,6 +47,7 @@ def run_code():
                 if item.appointment == "NotApproved":
                         try:
                                 options = Options()
+<<<<<<< HEAD
                                 options.add_extension('3.20.0_0.crx')
 
                                 driver = webdriver.Chrome(options=options)
@@ -102,6 +103,13 @@ def run_code():
                                         print("hi7")
                                 time.sleep(10)
 
+=======
+                                print("Open Driver")
+                                
+                                #options.add_argument('--headless')
+                                driver = webdriver.Firefox(options=options)
+                                print("Open Window")
+>>>>>>> 55aa2cdcc552c8002da0792e6f1b817981f74521
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
                                 
                                 print("Accept Cookie")
@@ -507,6 +515,12 @@ def run_code():
                                 
                                 
 
+<<<<<<< HEAD
 schedule.every(5).seconds.do(run_code)
 while True:
     schedule.run_pending()
+=======
+schedule.every(20).minutes.do(run_code)
+while True:
+    schedule.run_pending()
+>>>>>>> 55aa2cdcc552c8002da0792e6f1b817981f74521

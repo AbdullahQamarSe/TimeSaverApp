@@ -46,70 +46,52 @@ def run_code():
         for item in data_model1:
                 if item.appointment == "NotApproved":
                         try:
+                                import os
+                                from selenium.webdriver.common.by import By
+                                from selenium.webdriver.common.keys import Keys
+                                from selenium.webdriver.support.ui import WebDriverWait
+                                from selenium.webdriver.support import expected_conditions as EC
+                                import time
+                                from selenium.webdriver.firefox.options import Options
+                                # get the path to the user's home directory
+                                home_dir = os.path.expanduser("~")
+
+                                # construct the path to the default Firefox profile directory
+                                firefox_profile_dir = os.path.join("b4i2gad4.Default User-1677145723679")
+
+                                
+
+                                from selenium import webdriver
+                                import time
+
+                                # create a Firefox driver with the default profile
+                                profile = webdriver.FirefoxProfile()
+                                driver = webdriver.Firefox(firefox_profile=firefox_profile_dir)
                                 options = Options()
-<<<<<<< HEAD
-                                options.add_extension('3.20.0_0.crx')
+                                # navigate to a webpage
 
-                                driver = webdriver.Chrome(options=options)
-                                driver.get("chrome-extension://ailoabdmgclmfmhdagmlohpjlbpffblp/index.html")
-                                time.sleep(5)
+                                driver.get("moz-extension://ecd81e6a-674f-4449-81c3-8ae3d2bdba28/index.html")
+
                                 print("hi")
-                                LoginButton = driver.find_elements(by=By.XPATH, value='//*[@id="app"]/div[2]/div[2]/div/button')
-                                if LoginButton:
-                                        print("hi1")
-                                        LoginButton[0].click()
 
-                                window_handles = driver.window_handles
-                                time.sleep(2)
-                                # Switch to the second tab/window
-                                window_handles = driver.window_handles
-                                if len(window_handles) > 1:
-                                        driver.switch_to.window(window_handles[-1])
-                                        print("hi2")
-                                        email = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div/div/div[2]/div[2]/section/div[1]/form/div[1]/input')))
-                                        if email:
-                                                print("hi3")
-                                                email[0].send_keys("ali14zaidi@gmail.com")
+                                button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[1]/div/div[1]/a[2]')))
+                                if button:
+                                        print("hi3")
+                                        button[0].click()
 
-                                        password = driver.find_elements(by=By.XPATH, value='/html/body/div/div/div[2]/div[2]/section/div[1]/form/div[2]/input')
-                                        if password:
-                                                print("hi5")
-                                                password[0].send_keys("Crystalmind786@")  
-                                                print("hi6")
+                                search = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div/div[1]/div[1]/div/div/input')))
+                                if search:
+                                        print("hi3")
+                                        search[0].send_keys('Spain')      
 
-
-                                        button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div/div/div[2]/div[2]/section/div[1]/form/button[1]')))
-                                        if button:
-                                                print("hi3")
-                                                button[0].click()    
-
-                                        print("hi4")
-
-                                        button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[1]/div/div[1]/a[2]')))
-                                        if button:
-                                                print("hi3")
-                                                button[0].click()
-
-                                        search = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div/div[1]/div[1]/div/div/input')))
-                                        if search:
-                                                print("hi3")
-                                                search[0].send_keys('Spain')      
-
-                                        button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]')))
-                                        if button:
-                                                print("hi3")
-                                                button[0].click()
-
+                                button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]')))
+                                if button:
+                                        print("hi3")
+                                        button[0].click()
                                         print("hi7")
                                 time.sleep(10)
-
-=======
                                 print("Open Driver")
-                                
-                                #options.add_argument('--headless')
-                                driver = webdriver.Firefox(options=options)
-                                print("Open Window")
->>>>>>> 55aa2cdcc552c8002da0792e6f1b817981f74521
+
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
                                 
                                 print("Accept Cookie")
@@ -275,11 +257,11 @@ def run_code():
                                 email_select = driver.find_elements(by=By.XPATH, value='//*[@id="emailUNO"]')
                                 if email_select:
                                         print("Email")
-                                        email_select[0].send_keys("dtox142@gmail.com")
+                                        email_select[0].send_keys("abdullah.qfnetwork@gmail.com")
 
                                 email_select_repeat = driver.find_elements(by=By.XPATH, value='//*[@id="emailDOS"]')
                                 if email_select_repeat:
-                                        email_select_repeat[0].send_keys("dtox142@gmail.com")
+                                        email_select_repeat[0].send_keys("abdullah.qfnetwork@gmail.com")
 
                                 Reason_select = driver.find_elements(by=By.XPATH, value='//*[@id="txtObservaciones"]')
                                 if Reason_select:
@@ -436,9 +418,9 @@ def run_code():
                                                 
                                 time.sleep(80)
                                 # credentials
-                                username = "dtox142@gmail.com"
+                                username = "abdullah.qfnetwork@gmail.com"
                                 # generated app password
-                                app_password = "gbyxuoqeuhpiqtwo"
+                                app_password = "jsnvqvkebjejazcx"
                                 # https://www.systoolsgroup.com/imap/
                                 gmail_host = 'imap.gmail.com'
                                 # set connection
@@ -501,26 +483,21 @@ def run_code():
                                 smtp_server.ehlo()
                                 smtp_server.starttls()
                                 smtp_server.ehlo()
-                                smtp_server.login("dtox142@gmail.com", "gbyxuoqeuhpiqtwo")
-                                smtp_server.sendmail("dtox142@gmail.com", item.email, msg.as_string())
+                                smtp_server.login("abdullah.qfnetwork@gmail.com", "jsnvqvkebjejazcx")
+                                smtp_server.sendmail("abdullah.qfnetwork@gmail.com", item.email, msg.as_string())
                                 smtp_server.quit()
 
                                 item.appointment = "Approved"
                                 item.save()
                                 print("Finish")
-                                driver.quit()
+
                         except Exception as e:
                                 print("Block By Website", e)
-                                driver.quit()
+
                                 
                                 
 
-<<<<<<< HEAD
+
 schedule.every(5).seconds.do(run_code)
 while True:
     schedule.run_pending()
-=======
-schedule.every(20).minutes.do(run_code)
-while True:
-    schedule.run_pending()
->>>>>>> 55aa2cdcc552c8002da0792e6f1b817981f74521

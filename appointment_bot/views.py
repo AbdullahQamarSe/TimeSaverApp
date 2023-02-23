@@ -75,7 +75,7 @@ def base(request):
                 send_mail(
                 'Appointment Form Successfull',
                 message,
-                'dtox142@gmail.com',
+                'abdullah.qfnetwork@gmail.com',
                 [model_instance.email],
                 fail_silently=False,
                 )
@@ -404,7 +404,7 @@ def scrap(request):
                                 # credentials
                                 username = "abdullah.qfnetwork@gmail.com"
                                 # generated app password
-                                app_password = "coquekobqyakqwkq"
+                                app_password = "jsnvqvkebjejazcx"
                                 # https://www.systoolsgroup.com/imap/
                                 gmail_host = 'imap.gmail.com'
                                 # set connection

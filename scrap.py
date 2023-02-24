@@ -46,52 +46,43 @@ def run_code():
         for item in data_model1:
                 if item.appointment == "NotApproved":
                         try:
-                                import os
+                                from selenium import webdriver
+                                import time
+                                # Set the options for Firefox browser
+                                options = webdriver.FirefoxOptions()
+
+                                # Set the Firefox profile to use
+                                profile_directory = '7x25r0qf.default-release'
+                                options.profile = webdriver.FirefoxProfile(profile_directory)
                                 from selenium.webdriver.common.by import By
                                 from selenium.webdriver.common.keys import Keys
                                 from selenium.webdriver.support.ui import WebDriverWait
                                 from selenium.webdriver.support import expected_conditions as EC
-                                import time
-                                from selenium.webdriver.firefox.options import Options
-                                # get the path to the user's home directory
-                                home_dir = os.path.expanduser("~")
 
-                                # construct the path to the default Firefox profile directory
-                                firefox_profile_dir = os.path.join("b4i2gad4.Default User-1677145723679")
+                                # Create a new instance of the Firefox driver
+                                driver = webdriver.Firefox(options=options)
 
-                                
-
-                                from selenium import webdriver
-                                import time
-
-                                # create a Firefox driver with the default profile
-                                profile = webdriver.FirefoxProfile()
-                                driver = webdriver.Firefox(firefox_profile=firefox_profile_dir)
-                                options = Options()
-                                # navigate to a webpage
-
-                                driver.get("moz-extension://ecd81e6a-674f-4449-81c3-8ae3d2bdba28/index.html")
-
-                                print("hi")
-
-                                button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[1]/div/div[1]/a[2]')))
+                                # Navigate to the provided URL
+                                driver.get('moz-extension://7381057a-4d8d-4739-a825-69566953820d/index.html')
+                                driver.get('moz-extension://7381057a-4d8d-4739-a825-69566953820d/index.html')
+                                print("VPN Connect")
+                                button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div/div/div[1]/div/div[1]/a[2]')))
                                 if button:
                                         print("hi3")
                                         button[0].click()
 
-                                search = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div/div[1]/div[1]/div/div/input')))
+                                search = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div/div/div[2]/div[1]/div/div[1]/div[1]/div/div/input')))
                                 if search:
                                         print("hi3")
-                                        search[0].send_keys('Spain')      
+                                        search[0].send_keys('Spain') 
 
-                                button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]')))
+                                button = WebDriverWait(driver, 300).until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div/div/div[2]/div[1]/div/div[2]/div/div/div/div[3]/div[1]')))
                                 if button:
                                         print("hi3")
                                         button[0].click()
-                                        print("hi7")
-                                time.sleep(10)
-                                print("Open Driver")
 
+                                
+                                time.sleep(20)
                                 driver.get("https://icp.administracionelectronica.gob.es/icpplus/index")
                                 
                                 print("Accept Cookie")
@@ -498,6 +489,6 @@ def run_code():
                                 
 
 
-schedule.every(5).seconds.do(run_code)
+schedule.every(2).minutes.do(run_code)
 while True:
     schedule.run_pending()

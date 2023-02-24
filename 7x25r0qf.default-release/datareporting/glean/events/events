@@ -1,0 +1,1 @@
+{"timestamp":258,"category":"nimbus_events","name":"validation_failed","extra":{"experiment":"import-bookmarks-copy-and-segmentation","branch":"control","reason":"invalid-branch"}}
